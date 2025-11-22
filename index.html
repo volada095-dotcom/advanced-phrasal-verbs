@@ -164,6 +164,30 @@
             justify-content: center;
         }
 
+        .back-to-course-arrow {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .back-to-course-arrow:hover {
+            transform: scale(1.1);
+            color: #f0f0f0;
+        }
+
+        .modal-header > div {
+            display: flex;
+            align-items: center;
+        }
+
         .modal-body {
             padding: 0;
             display: flex;
@@ -519,7 +543,10 @@
     <div id="exerciseModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="exerciseTitle">Exercise</h2>
+                <div>
+                    <button class="back-to-course-arrow" id="backToCourseArrow">←</button>
+                    <h2 id="exerciseTitle">Exercise</h2>
+                </div>
                 <button class="close-btn">&times;</button>
             </div>
             <div class="content-area" id="exerciseContent">
@@ -536,10 +563,10 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        // Full course data for Advanced Phrasal Verbs - ALL 30 DAYS
+        // Sample course data for demonstration
         const courseData = {
             "course1": {
-              "title": "30-Day Advanced Phrasal Verbs Challenge",
+                "title": "30-Day Advanced Phrasal Verbs Challenge",
                 "days": [
                     {
                         "title": "Day 1 - Basic Phrasal Verbs",
@@ -2317,10 +2344,10 @@
                             }
                         ]
                     }
-                ] 
+                ]
             },
             "course2": {
-              "title": "30-Day Challenge Using 'Get'",
+                "title": "30-Day Challenge Using 'Get'",
                 "days": [
                   {
                     "title": "Day 1 - Introduction and 'get' in 'have got'",
@@ -5360,7 +5387,8 @@
                   }
                 ]
               }
-            };                
+            };
+
 
         // Utility functions
         const Utils = {
@@ -5629,6 +5657,7 @@
                 this.completeDayBtn = document.getElementById('completeDayBtn');
                 this.backToCourseBtn = document.getElementById('backToCourseBtn');
                 this.completeExerciseBtn = document.getElementById('completeExerciseBtn');
+                this.backToCourseArrow = document.getElementById('backToCourseArrow');
             }
 
             init() {
@@ -5686,6 +5715,7 @@
                 this.completeDayBtn.addEventListener('click', () => this.completeCurrentDay());
                 this.backToCourseBtn.addEventListener('click', () => this.backToCourse());
                 this.completeExerciseBtn.addEventListener('click', () => this.completeExercise());
+                this.backToCourseArrow.addEventListener('click', () => this.backToCourse());
 
                 window.addEventListener('click', (e) => {
                     if (e.target === this.courseModal) this.closeModals();
